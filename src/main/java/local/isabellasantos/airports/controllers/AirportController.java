@@ -43,7 +43,8 @@ public class AirportController {
         } else {
             
             return ResponseEntity.ok(result);
-            
+        }
+    }
             @GetMapping("/country/{countryName}")
             public ResponseEntity<List<AirportMinDTO>> findByCountryIgnoreCase(@PathVariable String countryName) {
         
@@ -51,9 +52,10 @@ public class AirportController {
              if(result.isEmpty()) {
              return ResponseEntity.notFound().build();
              } else {
-                 return responseEntity.ok(result);
+                 return ResponseEntity.ok(result);
              }   
+        
+        
+        }
         }
         
-    }
-}
