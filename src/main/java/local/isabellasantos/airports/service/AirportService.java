@@ -5,6 +5,7 @@
 package local.isabellasantos.airports.service;
 
 import java.util.List;
+import local.isabellasantos.airports.DTO.AirportMinDTO;
 import local.isabellasantos.airports.entities.Airport;
 import local.isabellasantos.airports.repositories.AirportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,19 @@ public class AirportService {
         public List<Airport> findByCity(String city) {
         List<Airport> result = airportRepository.findByCityIgnoreCase(city);
         return result; 
+        
         }
+        
+        public List<AirportMinDTO> findByCountry(String country) {
+            List<Airport> resultAirport = airportRepository.findByCountryIgnoreCase(country);
+         
+            List<AirportMinDTO> resultDTO = resultAirport.stream()
+                    .map(x -> new AirportMinDTO(x)).toList();
+        
+        
+        return resultDTO;
+                
+        
+}
     }
 

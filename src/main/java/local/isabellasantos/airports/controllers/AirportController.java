@@ -5,6 +5,7 @@
 package local.isabellasantos.airports.controllers;
 
 import java.util.List;
+import local.isabellasantos.airports.DTO.AirportMinDTO;
 import local.isabellasantos.airports.entities.Airport;
 import local.isabellasantos.airports.service.AirportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,17 @@ public class AirportController {
         } else {
             
             return ResponseEntity.ok(result);
+            
+            @GetMapping("/country/{countryName}")
+            public ResponseEntity<List<AirportMinDTO>> findByCountryIgnoreCase(@PathVariable String countryName) {
+        
+                List<AirportMinDTO> result = airportService.findByCountry(countryName);
+             if(result.isEmpty()) {
+             return ResponseEntity.notFound().build();
+             } else {
+                 return responseEntity.ok(result);
+             }   
         }
+        
     }
 }
